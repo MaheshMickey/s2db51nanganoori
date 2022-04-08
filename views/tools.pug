@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1= title
+  div(class="container-fluid")
+        div(class="row")
+            -
+                var results = [
+                    {
+                        "name":"VisualStudio",
+                        "version":"1.2.1",
+                        "cost":"$450"
+                    },
+                    {
+                        "name":"SQL Server",
+                        "version":"2.3.4",
+                        "cost":"$230"
+                    },
+                    {
+                        "name":"NodeJS",
+                        "version":"3.4",
+                        "cost":"$200"
+                    }
+                ]
+            each i,index in results 
+                div(class="col-sm-2" onclick=`buy(${index})`)  #{i.name}  
+                div(class="col-sm-2" onclick=`buy(${index})`)  #{i.version}
+                div(class="col-sm-2" onclick=`buy(${index})`)  #{i.cost}
+  script.
+    function buy(p)
+    {
+        alert(`You have purchased an item ${p+1}`);
+    }
