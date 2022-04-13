@@ -1,26 +1,64 @@
 var Tool = require('../models/tool'); 
  
-// List of all Costumes 
+// List of all tools
 exports.tool_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Costume list'); 
+    res.send('NOT IMPLEMENTED: tool list'); 
 }; 
  
-// for a specific Costume. 
+// for a specific tool 
 exports.tool_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Costume detail: ' + req.params.id); 
+    res.send('NOT IMPLEMENTED: tool detail: ' + req.params.id); 
 }; 
  
-// Handle Costume create on POST. 
-exports.tool_create_post = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Costume create POST'); 
-}; 
- 
-// Handle Costume delete form on DELETE. 
+// Handle tool create on POST. 
+exports.tool_create_post  = function(req,res){
+    res.send('NOT IMPLEMENTED: tool create post: '+req.params.id);
+}
+// Handle tool delete form on DELETE. 
 exports.tool_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Costume delete DELETE ' + req.params.id); 
+    res.send('NOT IMPLEMENTED: tool delete DELETE ' + req.params.id); 
 }; 
  
-// Handle Costume update form on PUT. 
+// Handle tool update form on PUT. 
 exports.tool_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Costume update PUT' + req.params.id); 
+    res.send('NOT IMPLEMENTED: tool update PUT' + req.params.id); 
 }; 
+
+exports.tool_list = async function(req, res) {
+    try{
+    theTool = await Tool.find();
+    res.send(theTool);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+};
+
+exports.tool_view_all_Page = async function(req, res) { 
+    try{ 
+        theTool = await Tool.find(); 
+        res.render('tools', { title: 'Tool Search Results', results: theTool }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
+
+exports.tool_create_post = async function(req, res) { 
+    console.log(req.body) 
+    let document = new Tool(); 
+    document.name = req.body.name;
+    document.version = req.body.version;
+    document.cost = req.body.cost;
+    try{ 
+        let result = await document.save(); 
+        res.send(result); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
+ 

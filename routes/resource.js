@@ -1,4 +1,3 @@
- 
 var express = require('express'); 
 var router = express.Router(); 
  
@@ -9,23 +8,23 @@ var tool_controller = require('../controllers/tool');
 /// API ROUTE /// 
  
 // GET resources base. 
-router.get('/resource', api_controller.api); 
+router.get('/', api_controller.api); 
  
 /// COSTUME ROUTES /// 
  
 // POST request for creating a Costume.  
-router.post('/resource/tool', tool_controller.tool_create_post); 
+router.post('/tool', tool_controller.tool_create_post); 
  
 // DELETE request to delete Costume. 
-router.delete('/resource/tool/:id', tool_controller.tool_delete); 
+router.delete('/tool/:id', tool_controller.tool_delete); 
  
 // PUT request to update Costume. 
-router.put('/resource/tool/:id', tool_controller.tool_update_put); 
+router.put('/tool/:id', tool_controller.tool_update_put); 
  
 // GET request for one Costume. 
-router.get('/resource/tool/:id', tool_controller.tool_detail); 
+router.get('/tool/:id', tool_controller.tool_detail); 
  
 // GET request for list of all Costume items. 
-router.get('/resource/tool', tool_controller.tool_list); 
+router.get('/tool', tool_controller.tool_list); 
  
 module.exports = router; 

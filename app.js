@@ -68,9 +68,9 @@ async function recreateDB(){
   // Delete everything 
   await Tools.deleteMany(); 
  
-  let instance1 = new Tools({name:"ghost", version:'2.3.3', cost:'25.4'}); 
-  let instance2 = new Tools({name:"ghostly", version:'2.3.5', cost:'223.7'}); 
-  let instance3 = new Tools({name:"Aish", version:'4.3.5', cost:'2.0'});
+  let instance1 = new Tools({name:"ghost", version:"2.3.3", cost:25.4}); 
+  let instance2 = new Tools({name:"ghostly", version:"2.3.5", cost:223.7}); 
+  let instance3 = new Tools({name:"Aish", version:"4.3.5", cost:42.0});
 
 
     instance1.save( function(err,doc) { 
@@ -90,6 +90,4 @@ async function recreateDB(){
           console.log("Third  object saved") 
       }); 
 } 
-// let reseed = true; 
-// if (reseed) { recreateDB();} 
 module.exports = app;
