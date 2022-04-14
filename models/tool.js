@@ -1,7 +1,7 @@
 const mongoose = require("mongoose") 
 const toolSchema = mongoose.Schema({ 
  name: String, 
- verison: String, 
+ version: String, 
  cost: Number 
 });
  
