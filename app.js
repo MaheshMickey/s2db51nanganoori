@@ -6,7 +6,7 @@ var logger = require('morgan');
 const mongoose = require("mongoose");
 
 
-const connectionString =  process.env.MONGO_CON;
+const connectionString =  process.env.MONGO_CON || "mongodb+srv://MaheshN:Maheshn1@cluster0.g2pae.mongodb.net/Project0?retryWrites=true&w=majority";
 console.log(connectionString);
 mongoose.connect(connectionString,{useNewUrlParser: true,useUnifiedTopology: true});
 
@@ -26,6 +26,8 @@ var resourceRouter = require('./routes/resource');
 var Tools = require("./models/tool");
 
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
