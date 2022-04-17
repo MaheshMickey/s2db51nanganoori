@@ -6,7 +6,7 @@ var logger = require('morgan');
 const mongoose = require("mongoose");
 
 
-const connectionString =  "mongodb+srv://MaheshN:Maheshn1@cluster0.g2pae.mongodb.net/Project0?retryWrites=true&w=majority";
+const connectionString =  process.env.MONGO_CON;
 console.log(connectionString);
 mongoose.connect(connectionString,{useNewUrlParser: true,useUnifiedTopology: true});
 
@@ -46,6 +46,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/resource',resourceRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

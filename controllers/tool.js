@@ -92,4 +92,43 @@ ${JSON.stringify(req.body)}`)
 failed`); 
     } 
 }; 
+
+exports.tool_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Tool.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
  
+exports.tool_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Tool.findById( req.query.id) 
+        res.render('tooldetail',  
+{ title: 'Tool Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+ 
+ // Handle building the view for creating a costume. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.tool_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('toolcreate', { title: 'Tool Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 

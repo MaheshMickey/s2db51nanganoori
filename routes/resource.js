@@ -10,6 +10,9 @@ var tool_controller = require('../controllers/tool');
 // GET resources base. 
 router.get('/', api_controller.api); 
  
+router.get('/detail',tool_controller.tool_view_one_Page);
+
+router.get('/create', tool_controller.tool_create_Page); 
 /// COSTUME ROUTES /// 
  
 // POST request for creating a Costume.  

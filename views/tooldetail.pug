@@ -1,0 +1,18 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let toolid = toShow._id
+  - let toolname = toShow.name
+  - let toolversion = toShow.version 
+  - let toolcost = toShow.cost 
+  div 
+    div.row 
+      div(class='toolAttr mr-3') Tool  ID is: 
+      div #{toolid} 
+    div.row 
+      div(class='toolAttr mr-3') Tool name is: 
+      div #{toolname} 
+      div(class='toolAttr mr-3') Tool cost is: 
+      div #{toolcost} 
