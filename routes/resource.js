@@ -13,6 +13,10 @@ router.get('/', api_controller.api);
 router.get('/detail',tool_controller.tool_view_one_Page);
 
 router.get('/create', tool_controller.tool_create_Page); 
+
+router.get('/update', tool_controller.tool_update_Page); 
+
+router.get('/delete', tool_controller.tool_delete_Page); 
 /// COSTUME ROUTES /// 
  
 // POST request for creating a Costume.  

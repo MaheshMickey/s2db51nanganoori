@@ -1,0 +1,43 @@
+extends layout 
+
+block content 
+  h1= title 
+ 
+  - let toolid = toShow._id 
+  - let toolname = toShow.name
+  - let toolversion = toShow.version 
+  - let toolcost  = toShow.cost 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{toolid} 
+  - let actionid = "/resource/tool/"+toolid 
+  form(id='ToolForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.toolAttr(for='tool_name') Tool Name
+        input#costume_type(type='text', name='tool_name', value= toolname ) 
+    div.form-group 
+        label.toolAttr(for='version') Version
+        input#size(type='text', name='version', value= toolversion) 
+    div.form-group 
+        label.toolAttr(for='cost') Cost 
+        input#cost(type='number', name='cost', value= toolcost ) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['ToolForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 
