@@ -9,16 +9,16 @@ block content
   - let toolname = toShow.name
   - let toolversion = toShow.version 
   - let toolcost = toShow.cost 
-  div 
+  div(class='container')
     div.row 
       div(class='toolAttr mr-3') Tool  ID is: 
       div #{toolid} 
     div.row 
       div(class='toolAttr mr-3') Tool name is: 
-      div #{toolname}
+      div(class='toolDetailAttr') #{toolname}
     div.row  
       div(class='toolAttr mr-3') Tool cost is: 
-      div #{toolcost}
+      div(class='toolDetailAttr') #{toolcost}
     div.row
       div(class='toolAttr mr-3') Tool version: 
-      div #{toolversion}
+      div(class='toolDetailAttr') #{toolversion}
