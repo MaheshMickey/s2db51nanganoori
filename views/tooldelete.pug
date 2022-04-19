@@ -1,8 +1,10 @@
 extends layout 
  
 block content 
-  h1= title 
- 
+  h1= title
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
   - let toolid = toShow._id
   - let toolname = toShow.name
   - let toolversion = toShow.version 

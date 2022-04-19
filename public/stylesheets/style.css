@@ -10,4 +10,8 @@ a {
 .toolAttr { 
   background-color: aquamarine; 
   width: 120px; 
-} 
+}
+.toolDetailAttr{
+  background-color:bisque; 
+  width: 120px; 
+}

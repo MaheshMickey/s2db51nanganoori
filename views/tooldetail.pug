@@ -2,7 +2,9 @@ extends layout
  
 block content 
   h1= title 
- 
+  if (toShow == null) 
+    h2 No instance to details 
+  else
   - let toolid = toShow._id
   - let toolname = toShow.name
   - let toolversion = toShow.version 
@@ -13,6 +15,10 @@ block content
       div #{toolid} 
     div.row 
       div(class='toolAttr mr-3') Tool name is: 
-      div #{toolname} 
+      div #{toolname}
+    div.row  
       div(class='toolAttr mr-3') Tool cost is: 
-      div #{toolcost} 
+      div #{toolcost}
+    div.row
+      div(class='toolAttr mr-3') Tool version: 
+      div #{toolversion}
