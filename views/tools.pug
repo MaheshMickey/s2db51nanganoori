@@ -7,8 +7,18 @@ block content
         div(class="row m-1")
             each item in items
              - let destination = `dispatch(\"/resource/update/?id=${item._id}\")`
+             - let destination1 = `dispatch(\"/resource/create\")`
+             - let destination2 = `dispatch(\"/resource/detail/?id=${item._id}\")`
+             - let destination3 = `dispatch(\"/resource/delete/?id=${item._id}\")`
+
              div(class="row-sm-2", class = "m1-1") Tool: #{item.name}(#{item.version}) is #{item.cost} 
+              button.btn(class="btn-primary m1-1", onclick=destination1) Create
+              |     
               button.btn(class="btn-primary m1-1", onclick=destination) Update
+              |     
+              button.btn(class="btn-primary m1-1", onclick=destination2) Detail
+              |     
+              button.btn(class="btn-primary m1-1", onclick=destination3) Delete
   script.
     function buy(p)
     {

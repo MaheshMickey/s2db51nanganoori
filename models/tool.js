@@ -1,8 +1,16 @@
 const mongoose = require("mongoose") 
 const toolSchema = mongoose.Schema({ 
- name: String, 
+ name:{
+     type:String,
+     minLength:4,
+     maxLength:30
+ },
  version: String, 
- cost: Number 
+ cost:{
+     type:Number,
+     min:10,
+     max:400
+ }
 });
  
 module.exports = mongoose.model("Tool", 
