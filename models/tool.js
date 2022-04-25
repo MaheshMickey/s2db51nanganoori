@@ -12,4 +12,4 @@ const toolSchema = mongoose.Schema({
      max:400
  }
 })
-module.exports = mongoose.model("Tool",toolSchema)
+module.exports = mongoose.model("tool",toolSchema)

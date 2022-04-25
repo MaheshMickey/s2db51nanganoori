@@ -6,9 +6,9 @@ block content
     h2 No instance to update  
   else
   - let toolid = toShow._id 
-  - let toolname = toShow.name
-  - let toolversion = toShow.version 
-  - let toolcost  = toShow.cost 
+  - let name = toShow.name
+  - let version = toShow.version 
+  - let cost  = toShow.cost 
    
   div.row(class='mb-2') 
     div.mr-1 ID is 
@@ -16,14 +16,14 @@ block content
   - let actionid = "/resource/tool/"+toolid 
   form(id='ToolForm', action= actionid, method="PUT") 
     div.form-group 
-        label.toolAttr(for='tool_name') Tool Name
-        input#costume_type(type='text', name='tool_name', value= toolname ) 
+        label.toolAttr(for='name') Tool Name
+        input#name(type='text', name='name', value= name ) 
     div.form-group 
         label.toolAttr(for='version') Version
-        input#size(type='text', name='version', value= toolversion) 
+        input#version(type='text', name='version', value= version) 
     div.form-group 
         label.toolAttr(for='cost') Cost 
-        input#cost(type='number', name='cost', value= toolcost ) 
+        input#cost(type='number', name='cost', value= cost ) 
     input(type="submit") 
  
   script. 
@@ -32,9 +32,9 @@ block content
       // TODO do something here to show user that form is being submitted 
       fetch(event.target.action, { 
         method: 'PUT', 
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      body: new URLSearchParams(new FormData(event.target))
       }).then((resp) => { 
-        return resp.text(); // or resp.text() or whatever the server sends 
+        return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
         alert("Update succeded") 
         // TODO handle body 

@@ -29,17 +29,15 @@ mongoose.connect(connectionString,{useNewUrlParser: true,useUnifiedTopology: tru
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
 db.once("open", function(){
-   console.log("Connection to DB succeeded");
-    recreateDB();
-});
+   console.log("Connection to DB succeeded")});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var toolsRouter = require('./routes/tools');
+var toolsRouter = require('./routes/tool');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
-var Tools = require("./models/tool");
+var tool = require("./models/tool");
 
 var app = express();
 
@@ -48,10 +46,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
-app.use('/selector',selectorRouter);
-app.use('/addmods',addmodsRouter);
-app.use('/tools',toolsRouter);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -69,6 +63,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/resource',resourceRouter);
+app.use('/selector',selectorRouter);
+app.use('/addmods',addmodsRouter);
+app.use('/tool',toolsRouter);
 
 var Account =require('./models/account');
  
@@ -97,11 +94,11 @@ app.use(function(err, req, res, next) {
 // We can seed the collection if needed on server start 
 async function recreateDB(){ 
   // Delete everything 
-  await Tools.deleteMany(); 
+  await tool.deleteMany(); 
  
-  let instance1 = new Tools({name:"ghost", version:"2.3.3", cost:25.4}); 
-  let instance2 = new Tools({name:"ghostly", version:"2.3.5", cost:223.7}); 
-  let instance3 = new Tools({name:"Aish", version:"4.3.5", cost:42.0});
+  let instance1 = new tool({name:"ghost", version:"2.3.3", cost:25}); 
+  let instance2 = new tool({name:"ghostly", version:"2.3.5", cost:223}); 
+  let instance3 = new tool({name:"Aish", version:"4.3.5", cost:42});
 
 
     instance1.save( function(err,doc) { 
@@ -122,4 +119,8 @@ async function recreateDB(){
       }); 
     
 }
+
+let reseed = true;
+if(reseed){ recreateDB();}
+
 module.exports=app;

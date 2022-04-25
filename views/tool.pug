@@ -1,0 +1,21 @@
+extends layout 
+
+block content
+    h1= title
+    -let items =results;
+    div(class="container-fluid") 
+      div(class="row m-1") 
+       - let destination1 = `dispatch(\"/tool/create\")`
+       button.btn( class="btn-info ml-1", onclick= destination1) Create
+       each item in items
+        - let destination = `dispatch(\"/tool/update/?id=${item._id}\")`
+        - let destination2 = `dispatch(\"/tool/detail/?id=${item._id}\")`
+        - let destination3 = `dispatch(\"/tool/delete/?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.version}) is #{item.cost} 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-warning ml-1", onclick= destination2) Detail
+          button.btn( class="btn-secondary ml-1", onclick= destination3) Delete 
+    script. 
+      function dispatch(path){ 
+        window.location.href=path 
+      }

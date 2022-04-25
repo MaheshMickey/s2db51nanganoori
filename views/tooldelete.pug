@@ -6,9 +6,9 @@ block content
     h2 No instance to delete 
   else 
   - let toolid = toShow._id
-  - let toolname = toShow.name
-  - let toolversion = toShow.version 
-  - let toolcost = toShow.cost
+  - let name = toShow.name
+  - let version = toShow.version 
+  - let cost = toShow.cost
   - let actionid = "/resource/tool/"+toolid
   script let actionid = "#{actionid}"
   div 
@@ -17,15 +17,19 @@ block content
       div #{toolid} 
     div.row 
       div(class='toolAttr mr-3') Tool name is: 
-      div #{toolname} 
+      div #{name} 
+    div.row 
+      div(class='toolAttr mr-3') Tool version is: 
+      div #{version} 
+    div.row
       div(class='toolAttr mr-3') Tool cost is: 
-      div #{toolcost} 
+      div #{cost} 
     button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
     button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
   script. 
         function cancel() { 
         // Go back to the home page for the costume collection 
-        window.location.href='/resource/tool/' 
+        window.location.href='/resource/tool' 
         }
   script. 
     function deleteOnid() { 
@@ -37,7 +41,7 @@ block content
         return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
         alert("Delete succeded") 
-        window.location.href='/resource/tool/' 
+        window.location.href='/resource/tool' 
         // TODO handle body 
       }).catch((error) => { 
         // TODO handle error 
