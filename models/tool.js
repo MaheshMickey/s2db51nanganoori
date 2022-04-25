@@ -12,6 +12,4 @@ const toolSchema = mongoose.Schema({
      max:400
  }
 })
- 
-module.exports = mongoose.model("Tool",toolSchema) 
-const valid = mongoose.validate(this.schema);
+module.exports = mongoose.model("Tool",toolSchema)
