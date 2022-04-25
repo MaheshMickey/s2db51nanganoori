@@ -11,7 +11,7 @@ const toolSchema = mongoose.Schema({
      min:10,
      max:400
  }
-});
+})
  
-module.exports = mongoose.model("Tool", 
-toolSchema) 
+module.exports = mongoose.model("Tool",toolSchema) 
+const valid = mongoose.validate(this.schema);
